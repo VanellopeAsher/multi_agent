@@ -1,0 +1,32 @@
+{
+  "instance_id": "b0082c12-2c12-50c4-adc5-981cfba1233a",
+  "problem": "Leah just got a new kitten. Spaying her cost $200, her 3 vaccines cost $20 each, but Leah got a 10% discount on the total vaccine cost, and the kitten broke 4 vases that cost $12 each. How much has the kitten cost so far?",
+  "roles": {
+    "agent1": "assistant",
+    "agent2": "mathproxyagent"
+  },
+  "history": [
+    {
+      "role": "assistant",
+      "name": "mathproxyagent",
+      "content": "Let's use Python to solve a math problem.\n\nQuery requirements:\nYou should always use the 'print' function for the output and use fractions/radical forms instead of decimals.\nYou can use packages like sympy to help you.\nYou must follow the formats below to write your code:\n```python\n# your code\n```\n\nFirst state the key idea to solve the problem. You may choose from three ways to solve the problem:\nCase 1: If the problem can be solved with Python code directly, please write a program to solve it. You can enumerate all possible arrangements if needed.\nCase 2: If the problem is mostly reasoning, you can solve it by yourself directly.\nCase 3: If the problem cannot be handled in the above two ways, please follow this process:\n1. Solve the problem step by step (do not over-divide the steps).\n2. Take out any queries that can be asked through Python (for example, any calculations or equations that can be calculated).\n3. Wait for me to give the results.\n4. Continue if you think the result is correct. If the result is invalid or unexpected, please correct your query or reasoning.\n\nAfter all the queries are run and you get the answer, put the answer in \\boxed{}.\n\nProblem:\nLeah just got a new kitten. Spaying her cost $200, her 3 vaccines cost $20 each, but Leah got a 10% discount on the total vaccine cost, and the kitten broke 4 vases that cost $12 each. How much has the kitten cost so far?"
+    },
+    {
+      "role": "user",
+      "name": "assistant",
+      "content": "The key idea for this problem is to sum up all the costs Leah had to pay because of the kitten:\n\n1. Spaying cost: $200\n2. Cost of 3 vaccines: 3 * $20 => but with a 10% discount\n3. Damage cost for 4 broken vases: 4 * $12\n\nWe'll write a Python program to calculate all of these values. Let's get started:\n\n```python\nfrom sympy import *\n\n# Define what each item costs\nspaying_cost = 200\nvaccine_cost = 20\nvase_cost = 12\n\n# Define the quantities of each item \nnum_vaccines = 3\nnum_vases = 4\n\n# Calculate the total cost of vaccines before discount\nvaccine_total_before_discount = num_vaccines * vaccine_cost\n\n# Apply a 10% discount to the total cost of vaccines\ndiscount = Rational(10, 100)\nvaccine_total_after_discount = vaccine_total_before_discount * (1 - discount)\n\n# Calculate the total cost of the broken vases\nvase_total = num_vases * vase_cost\n\n# Sum up all the costs\ntotal_cost = spaying_cost + vaccine_total_after_discount + vase_total\n\nprint(total_cost)\n```"
+    },
+    {
+      "role": "assistant",
+      "name": "mathproxyagent",
+      "content": "302"
+    },
+    {
+      "role": "user",
+      "name": "assistant",
+      "content": "The total cost of the kitten so far is \\boxed{302}."
+    }
+  ],
+  "label": "302",
+  "correct": true
+}

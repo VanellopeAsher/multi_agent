@@ -1,0 +1,32 @@
+{
+  "instance_id": "4734c944-b6c2-542d-99b2-adee7088cf9f",
+  "problem": "Peter has $70 and wishes to spend an equal amount each day for one week. From Sunday through Wednesday, he spent his money on wooden action figures which cost $5 each. For the rest of the week, he will buy plastic action figures which cost $2.5 each. How many total action figures will he have by the end of the week?",
+  "roles": {
+    "agent1": "assistant",
+    "agent2": "mathproxyagent"
+  },
+  "history": [
+    {
+      "role": "assistant",
+      "name": "mathproxyagent",
+      "content": "Let's use Python to solve a math problem.\n\nQuery requirements:\nYou should always use the 'print' function for the output and use fractions/radical forms instead of decimals.\nYou can use packages like sympy to help you.\nYou must follow the formats below to write your code:\n```python\n# your code\n```\n\nFirst state the key idea to solve the problem. You may choose from three ways to solve the problem:\nCase 1: If the problem can be solved with Python code directly, please write a program to solve it. You can enumerate all possible arrangements if needed.\nCase 2: If the problem is mostly reasoning, you can solve it by yourself directly.\nCase 3: If the problem cannot be handled in the above two ways, please follow this process:\n1. Solve the problem step by step (do not over-divide the steps).\n2. Take out any queries that can be asked through Python (for example, any calculations or equations that can be calculated).\n3. Wait for me to give the results.\n4. Continue if you think the result is correct. If the result is invalid or unexpected, please correct your query or reasoning.\n\nAfter all the queries are run and you get the answer, put the answer in \\boxed{}.\n\nProblem:\nPeter has $70 and wishes to spend an equal amount each day for one week. From Sunday through Wednesday, he spent his money on wooden action figures which cost $5 each. For the rest of the week, he will buy plastic action figures which cost $2.5 each. How many total action figures will he have by the end of the week?"
+    },
+    {
+      "role": "user",
+      "name": "assistant",
+      "content": "Key Idea:\nThe key to solve this problem is to first calculate how much money Peter spends on each day. This is found by dividing his total money with the number of days in the week. Then, we find out how many wooden and plastic action figures he can buy with the daily amount.\n\nWe will use Case 1, i.e., we can directly solve the problem using python code.\n\n```python\nimport sympy as sp\n\n# total amount of money\ntotal_money = 70  # in dollars\n# total number of days \ntotal_days = 7  # one week\n# cost of wooden and plastic action figure\nwooden_cost = 5  # in dollars\nplastic_cost = 2.5  # in dollars\n# number of days Peter buys wooden and plastic action figures\nwooden_days = 4\nplastic_days = total_days - wooden_days\n\n# money spent per day\ndaily_spent = total_money / total_days\n\n# calculate number of wooden and plastic action figures he can buy each day\nwooden = sp.floor(daily_spent / wooden_cost)  # using floor function to get the maximum integer number of action figures\nplastic = sp.floor(daily_spent / plastic_cost)  \n\n# calculate total number of action figures he can buy \ntotal_action_figures = wooden * wooden_days + plastic * plastic_days\n\nprint(total_action_figures)\n```\n\nThis python code will calculate the total action figures Peter will have by the end of the week. The function sp.floor is used to ensure that we get an integer value for the number of action figures each day."
+    },
+    {
+      "role": "assistant",
+      "name": "mathproxyagent",
+      "content": "20"
+    },
+    {
+      "role": "user",
+      "name": "assistant",
+      "content": "The total number of action figures Peter will have by the end of the week is \\boxed{20}."
+    }
+  ],
+  "label": "20",
+  "correct": true
+}

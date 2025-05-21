@@ -1,0 +1,42 @@
+{
+  "instance_id": "9d4eecf3-32cf-5c54-8290-3f5bbe05bec3",
+  "problem": "Richard, Jerry, and Robert are going to share 6000 cherries. If Robert has 3000 cherries, and has 1000 more than Richard, how many more cherries does Robert have than Jerry?",
+  "roles": {
+    "agent1": "assistant",
+    "agent2": "mathproxyagent"
+  },
+  "history": [
+    {
+      "role": "assistant",
+      "name": "mathproxyagent",
+      "content": "Let's use Python to solve a math problem.\n\nQuery requirements:\nYou should always use the 'print' function for the output and use fractions/radical forms instead of decimals.\nYou can use packages like sympy to help you.\nYou must follow the formats below to write your code:\n```python\n# your code\n```\n\nFirst state the key idea to solve the problem. You may choose from three ways to solve the problem:\nCase 1: If the problem can be solved with Python code directly, please write a program to solve it. You can enumerate all possible arrangements if needed.\nCase 2: If the problem is mostly reasoning, you can solve it by yourself directly.\nCase 3: If the problem cannot be handled in the above two ways, please follow this process:\n1. Solve the problem step by step (do not over-divide the steps).\n2. Take out any queries that can be asked through Python (for example, any calculations or equations that can be calculated).\n3. Wait for me to give the results.\n4. Continue if you think the result is correct. If the result is invalid or unexpected, please correct your query or reasoning.\n\nAfter all the queries are run and you get the answer, put the answer in \\boxed{}.\n\nProblem:\nRichard, Jerry, and Robert are going to share 6000 cherries. If Robert has 3000 cherries, and has 1000 more than Richard, how many more cherries does Robert have than Jerry?"
+    },
+    {
+      "role": "user",
+      "name": "assistant",
+      "content": "Let's denote:\n\nR = cherries Richard has.\nJ = cherries Jerry has.\nRo = cherries Robert has.\n\nFrom the problem, we know that:\n\nRo = 3000,\nRo = R + 1000,\nR + J + Ro = 6000.\n\nWe can substitute Ro into the above equations and solve for R and J.\n\nFinally, we subtract J from Ro to find how many more cherries Robert has than Jerry.\n\nLet's write Python code to solve it."
+    },
+    {
+      "role": "assistant",
+      "name": "mathproxyagent",
+      "content": "Continue. Please keep solving the problem until you need to query. (If you get to the answer, put it in \\boxed{}.)"
+    },
+    {
+      "role": "user",
+      "name": "assistant",
+      "content": "```python\nfrom sympy import symbols, Eq, solve\n\nR, J, Ro = symbols('R J Ro')\n\n# Given conditions\neq1 = Eq(Ro, 3000)  # Robert has 3000 cherries\neq2 = Eq(Ro, R + 1000)  # Robert has 1000 more cherries than Richard\neq3 = Eq(R + J + Ro, 6000)  # Total cherries are 6000\n\n# Solve the equations\nsol = solve((eq1, eq2, eq3), (R, J, Ro))\n\n# Find how many more cherries Robert has than Jerry\nmore_cherries = sol[Ro] - sol[J]\n\nprint(more_cherries)\n```"
+    },
+    {
+      "role": "assistant",
+      "name": "mathproxyagent",
+      "content": "2000"
+    },
+    {
+      "role": "user",
+      "name": "assistant",
+      "content": "So, Robert has \\boxed{2000} more cherries than Jerry."
+    }
+  ],
+  "label": "2000",
+  "correct": true
+}

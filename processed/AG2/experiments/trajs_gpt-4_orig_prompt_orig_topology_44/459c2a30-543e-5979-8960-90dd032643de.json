@@ -1,0 +1,42 @@
+{
+  "instance_id": "459c2a30-543e-5979-8960-90dd032643de",
+  "problem": "Brittany's quilted comforter has many 1-foot by 1-foot colored squares. The comforter had 14 red squares, 4 more blue squares than red squares, 6 more green squares than blue squares, and much fewer white squares than green squares.  Brittany's comforter is 68 square feet. How much fewer are white squares  than green squares?",
+  "roles": {
+    "agent1": "assistant",
+    "agent2": "mathproxyagent"
+  },
+  "history": [
+    {
+      "role": "assistant",
+      "name": "mathproxyagent",
+      "content": "Let's use Python to solve a math problem.\n\nQuery requirements:\nYou should always use the 'print' function for the output and use fractions/radical forms instead of decimals.\nYou can use packages like sympy to help you.\nYou must follow the formats below to write your code:\n```python\n# your code\n```\n\nFirst state the key idea to solve the problem. You may choose from three ways to solve the problem:\nCase 1: If the problem can be solved with Python code directly, please write a program to solve it. You can enumerate all possible arrangements if needed.\nCase 2: If the problem is mostly reasoning, you can solve it by yourself directly.\nCase 3: If the problem cannot be handled in the above two ways, please follow this process:\n1. Solve the problem step by step (do not over-divide the steps).\n2. Take out any queries that can be asked through Python (for example, any calculations or equations that can be calculated).\n3. Wait for me to give the results.\n4. Continue if you think the result is correct. If the result is invalid or unexpected, please correct your query or reasoning.\n\nAfter all the queries are run and you get the answer, put the answer in \\boxed{}.\n\nProblem:\nBrittany's quilted comforter has many 1-foot by 1-foot colored squares. The comforter had 14 red squares, 4 more blue squares than red squares, 6 more green squares than blue squares, and much fewer white squares than green squares.  Brittany's comforter is 68 square feet. How much fewer are white squares  than green squares?"
+    },
+    {
+      "role": "user",
+      "name": "assistant",
+      "content": "Key Idea:\nAs the sum of all the squares is equal to 68 square feet, we can write down an equation for the total squares. We also know that blue squares are more than red squares, green squares are more than blue squares and white squares are fewer than green squares. Thus, we can express the counts of different colors in terms of the red squares count and solve the equation to get the value of red, blue, green and white squares. The difference would give us how much fewer the white squares are than the green squares.\n\nLet's implement this in Python using sympy module."
+    },
+    {
+      "role": "assistant",
+      "name": "mathproxyagent",
+      "content": "Continue. Please keep solving the problem until you need to query. (If you get to the answer, put it in \\boxed{}.)"
+    },
+    {
+      "role": "user",
+      "name": "assistant",
+      "content": "```python\nimport sympy as sp\n\n# Let's define our variables\nred = sp.symbols('red')\nblue = red + 4  # 4 more blue squares than red squares\ngreen = blue + 6  # 6 more green squares than blue squares\nwhite = 68 - red - blue - green # Brittany's comforter is 68 square feet\n\n# Solve the equation for red\nsolution = sp.solve(red - 14, red)\n\n# Pluggin the value back into the equation to calculate green and white squares\ngreen_squares = green.subs(red, solution[0])\nwhite_squares =  white.subs(red, solution[0])\n\n# Calculate the difference\ndiff_ = green_squares - white_squares\n\nprint(diff_)\n```"
+    },
+    {
+      "role": "assistant",
+      "name": "mathproxyagent",
+      "content": "12"
+    },
+    {
+      "role": "user",
+      "name": "assistant",
+      "content": "The white squares are \\boxed{12} less than the green squares."
+    }
+  ],
+  "label": "12",
+  "correct": true
+}
