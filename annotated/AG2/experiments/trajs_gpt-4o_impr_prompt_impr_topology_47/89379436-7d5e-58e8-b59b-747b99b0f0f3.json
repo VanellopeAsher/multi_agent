@@ -65,69 +65,77 @@
       "turn4": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": true,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": true,
-          "No attempt to verify outcome": false,
-          "Blurring roles": false
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": false,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the 'current message to evaluate' acknowledges the need for the shark's length to proceed but also suggests hypothetical lengths, which diverges from solving the task at hand based on given data, thus demonstrating a disobedience to the task specification. ",
-          "Proceed with incorrect assumptions": "the 'current message to evaluate' discusses the need for the shark's length to perform a calculation but does not indicate any incorrect verification of existing information or decisions; rather, it appropriately seeks necessary information.  ",
-          "Redundant conversation turns": "the 'current message to evaluate' reiterates the need for the shark's length, which has already been addressed in the 'agent_problem_solver's' message and does not add new information, demonstrating step repetition.  ",
-          "No attempt to verify outcome": "the evaluation message acknowledges a need for the shark length to compute the percentage but does not engage in verifying or validating the previously provided information, which aligns with the characteristics of incomplete verification. ",
-          "Blurring roles": "the 'current message to evaluate' prompts for additional information regarding the shark's length, indicating that it seeks to continue the dialogue and gather necessary details before concluding, thus not exhibiting premature termination.  "
+          "disobey_task_specification": "the current message to evaluate does not adhere to the requirement of solving the problem despite missing information; it instead seeks clarification instead of providing an answer.  ",
+          "disobey_role_specification": "the current message does not deviate from the role specification as agent code executor, as it focuses on seeking the necessary inputs to perform calculations in python, which aligns with its defined responsibilities. ",
+          "incorrect_verification": "the current message does not exhibit a failure to validate or cross-check crucial information, as it appropriately notes the need for the shark's length to compute the percentage.  ",
+          "step_repetition": "the current message does not explicitly repeat any previously completed steps in the problem-solving process, but rather builds on the last message's findings. ",
+          "no_or_incomplete_verification": "the current message implies a need for confirmation of the shark's length, but does not adequately verify or confirm the necessary details to proceed with the calculation, indicating incomplete verification of task requirements. ",
+          "premature_termination": "the current message does not indicate an ending to the dialogue or an abrupt cessation of the task, but rather seeks additional information to proceed, thus it does not exhibit premature termination. "
         }
       },
       "turn5": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": true,
-          "Blurring roles": true
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": true,
+          "premature_termination": true
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the suggested next speaker, agent code executor, is appropriately selected as they are engaged in the task of calculating the percentage, thus adhering to the task specifications.  ",
-          "Proceed with incorrect assumptions": "the 'current message to evaluate' suggests the next speaker without attempting any validation or cross-checking of crucial information or decisions, thus it does not exhibit characteristics of incorrect verification.  ",
-          "Redundant conversation turns": "the 'current message to evaluate' does not contain any unnecessary reiteration of steps or questions, as it simply suggests the next speaker without repeating prior content. ",
-          "No attempt to verify outcome": "the 'current message to evaluate' does not provide any verification or acknowledgment of the prior conversation's need for verifying the shark's length, thus it exhibits the characteristics of the error dimension of no or incomplete verification. ",
-          "Blurring roles": "the 'current message to evaluate' suggests the next speaker before the necessary information regarding the shark's length has been established, which creates an incomplete context for the ongoing discussion. "
+          "disobey_task_specification": "the message \"suggested next speaker: agent code executor\" does not contain any task-specific constraints or requirements and does not demonstrate a failure to adhere to them, as it simply suggests a next speaker. ",
+          "disobey_role_specification": "the current message, which suggests the next speaker, does not exhibit a failure to adhere to the defined responsibilities of the agent code executor, as this role may include directing the flow of conversation. ",
+          "incorrect_verification": "the current message does not demonstrate a failure to validate or cross-check information, as it simply suggests the next speaker without making any decisions on the substantive problem. ",
+          "step_repetition": "the 'current message to evaluate' does not reiterate any previously completed steps, but rather suggests the next speaker without repeating any prior actions or procedural steps. ",
+          "no_or_incomplete_verification": "the 'current message to evaluate' does not include any verification or confirmation of the previous task outcomes, indicating a lack of thorough checking before proceeding, thus illustrating the error dimension of no or incomplete verification. ",
+          "premature_termination": "the current message suggests the next speaker without providing the necessary shark length information for completing the ongoing calculation task, indicating a premature termination of the dialogue.  "
         }
       },
       "turn6": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": false,
-          "Blurring roles": false
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": true,
+          "step_repetition": false,
+          "no_or_incomplete_verification": false,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the current message assumes a specific length for the shark without confirming if it aligns with the task or requirements discussed previously, thus deviating from the constraints set by the context.  ",
-          "Proceed with incorrect assumptions": "the current message assumes a hypothetical length for the shark without attempting to validate or cross-check the necessity of the shark's length as discussed in previous messages, which indicates inadequate verification.  ",
-          "Redundant conversation turns": "the current message does not exhibit step repetition as it builds upon the previous discussion by assuming a shark length and presenting a new calculation without repeating any previously completed steps.  ",
-          "No attempt to verify outcome": "the current message assumes a hypothetical shark length without verifying or confirming actual lengths provided in the context, failing to check for potential discrepancies or requirements. ",
-          "Blurring roles": "the current message does not terminate the interaction prematurely, as it proposes an assumption and continues to progress towards a solution rather than halting the conversation or leaving objectives unmet. "
+          "disobey_task_specification": "the current message adheres to the task specifications by assuming a hypothetical length for the shark and providing the corresponding python code to compute the percentage, thus not exhibiting a disobedience to the task.  ",
+          "disobey_role_specification": "the current message adheres to the responsibilities of the agent code executor role by providing a python code example to calculate the percentage based on a hypothetical length, without mimicking another agent's role. ",
+          "incorrect_verification": "the current message assumes a hypothetical shark length without validating or cross-checking the user's initial concern about needing the shark's actual length, which constitutes a failure to adequately verify crucial information in the calculation process.  ",
+          "step_repetition": "the current message does not repeat any steps that have already been completed, as it builds on previous discussions by assuming a specific length for calculation rather than reiterating earlier steps.  ",
+          "no_or_incomplete_verification": "the message does not include any verification of the assumed shark length or the resulting calculations, which allows for the possibility of undetected errors. ",
+          "premature_termination": "the current message suggests a hypothetical length for the shark and provides an associated calculation, but it also indicates a willingness to execute the calculation based on the assumption made, thus not terminating the dialogue prematurely. "
         }
       },
       "turn7": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": false,
-          "Blurring roles": true
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": false,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the 'current message to evaluate' does not indicate any failure to adhere to specific constraints or requirements of the task based on the provided context, as it reports the successful execution of the previous code with the expected output. ",
-          "Proceed with incorrect assumptions": "the current message does not demonstrate incorrect verification as it simply reports a successful execution without any validation or cross-checking of crucial information or decisions. ",
-          "Redundant conversation turns": "the 'current message to evaluate' does not explicitly reiterate or repeat previously completed steps but rather presents an execution result, thus not exhibiting the characteristics of step repetition. ",
-          "No attempt to verify outcome": "the current message shows the result of code execution without any indication that the output has been verified against expected or logical results, thereby allowing potential errors to remain unaddressed. ",
-          "Blurring roles": "the current message concludes the interaction abruptly without fully addressing the user's prior requests for further discussion or verification of the calculations, indicating a lack of complete exchange or necessary follow-up.  "
+          "disobey_task_specification": "the current message simply reports the successful execution of code without addressing any specific task constraints or requirements, thus not demonstrating a failure to adhere to task specifications. ",
+          "disobey_role_specification": "the current message does not demonstrate disobedience to the role specification, as it provides the output of executed code, which aligns with the expected task of an agent code executor.  ",
+          "incorrect_verification": "the current message does not demonstrate incorrect verification as it simply reports the execution result without any indication of unverified crucial information or decisions. ",
+          "step_repetition": "the current message does not reiterate any previously completed steps and simply reports the execution result, indicating that there is no step repetition present.  ",
+          "no_or_incomplete_verification": "the current message only reports the execution result without any verification of the calculation or consideration for potential errors in the previous assumptions, indicating a lack of proper confirmation of the task outcome. ",
+          "premature_termination": "the current message conveys an execution result but does not return to the user to discuss next steps or further relevant information, which could be deemed as ending the engagement prematurely without fully addressing the user's needs.  "
         }
       },
       "turn8": {
@@ -144,18 +152,20 @@
       "turn3": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": true,
-          "Blurring roles": false
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": true,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the current message to evaluate explicitly does not adhere to the task's specifications by assuming a variable for the shark's length instead of seeking an explicit answer based on the available information. ",
-          "Proceed with incorrect assumptions": "the current message does not demonstrate incorrect verification as it correctly identifies the lack of necessary information (the shark's length) for calculating the percentage and does not attempt any erroneous validation. ",
-          "Redundant conversation turns": "the 'current message to evaluate' does not exhibit unnecessary reiteration of previous steps, as it provides a clear process to tackle the problem without repeating any steps already understood.  ",
-          "No attempt to verify outcome": "the current message does not perform any verification of the provided data nor indicates that verification will occur after assumptions regarding the shark's length are made, which aligns with the characteristics of incomplete verification as defined. ",
-          "Blurring roles": "the message provides a thorough exploration of the problem but requests the shark's length to complete the calculation, indicating that it does not prematurely terminate the interaction since it seeks essential information to proceed. "
+          "disobey_task_specification": "the current message correctly identifies the need for the shark's length to calculate the percentage but fails to adhere to the task specification by providing an assumption instead of directly attempting to solve the problem based on the context given. ",
+          "disobey_role_specification": "the current message adheres to the role of the agent problem solver by collaboratively addressing the problem without crossing into the specific roles defined for other agents (e.g., agent code executor or agent verifier). ",
+          "incorrect_verification": "the current message does not fail to validate or cross-check crucial information provided in the conversational context, as it correctly identifies the lack of the shark's length necessary for accurate calculation. ",
+          "step_repetition": "the current message systematically presents a structured solution without unnecessary reiteration of previously completed steps, thereby not demonstrating step repetition as defined. ",
+          "no_or_incomplete_verification": "the message indicates the need for the shark's length to complete the calculation but does not verify whether this information was previously provided or confirm its absence explicitly, illustrating incomplete verification.  ",
+          "premature_termination": "the current message seeks additional information regarding the shark's length to complete the solution, avoiding premature termination as it encourages further discussion.  "
         }
       },
       "turn4": {
@@ -178,18 +188,20 @@
       "turn1": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": false,
-          "Blurring roles": false
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": false,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the current message does not violate any specified task instructions, as it addresses a mathematical question regarding the percentage of combined lengths, which does not indicate any deviation from task specifications. ",
-          "Proceed with incorrect assumptions": "there is no attempt to validate or cross-check any information in the message, so it does not exhibit the characteristics of incorrect verification.  ",
-          "Redundant conversation turns": "the 'current message to evaluate' presents a new question without any unnecessary reiteration of previous steps, and there is no context indicating prior mention of similar calculations. ",
-          "No attempt to verify outcome": "the current message presents a mathematical question but does not include any verification steps or context to ensure correctness in its question or calculation, which aligns with the definition of 'no_or_incomplete_verification'. ",
-          "Blurring roles": "the current message poses a question about the percentage of the shark's body length based on the information provided, but does not conclude or provide a complete interaction to determine if all necessary information has been exchanged. "
+          "disobey_task_specification": "the current message presents a mathematical question without any evident task specification or inquiry that it is disobeying, as there are no prior constraints set in the conversational context. ",
+          "disobey_role_specification": "the current message does not reflect the responsibilities of the agent verifier role and instead presents a question typical of an academic or problem-solving context. ",
+          "incorrect_verification": "the current message does not involve any verification process or check against crucial information, and therefore does not demonstrate incorrect verification.  ",
+          "step_repetition": "the 'current message to evaluate' does not exhibit unnecessary reiteration of previously completed steps, as there is no context indicating that any steps have been repeated. ",
+          "no_or_incomplete_verification": "the current message presents a mathematical question without confirming specific outcomes or checking the context for accuracy, which suggests a lack of verification. ",
+          "premature_termination": "the current message to evaluate does not end a dialogue prematurely, as it poses a question that furthers the conversation without suggesting any intent to conclude or terminate the interaction.  "
         }
       },
       "turn2": {
@@ -213,18 +225,20 @@
       "turn8": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": true,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": true,
-          "Blurring roles": false
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": true,
+          "no_or_incomplete_verification": true,
+          "premature_termination": true
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the current message disregards the previously established assumption of the shark's length (120 inches) and instead asserts that a definitive length is needed, contradicting the earlier context where a hypothetical length was accepted for calculations. ",
-          "Proceed with incorrect assumptions": "the current message indicates an inability to verify the proposed solutions due to the lack of actual data, which aligns with the characteristics of inadequate validation described in the error dimension explanation. ",
-          "Redundant conversation turns": "the current message reiterates the need for the actual length of the shark to compute the percentage accurately, which has already been established in the preceding messages where a hypothetical length was used. ",
-          "No attempt to verify outcome": "the current message indicates a lack of verification regarding the dependence on a hypothetical value and the absence of actual data, which aligns with the explanation of the error dimension since it suggests that the problem cannot be accurately solved without the needed information. ",
-          "Blurring roles": "the current message indicates a premature termination by concluding the interaction with a statement about the absence of necessary information without suggesting further discussion or resolution, which leaves the problem unsolved. "
+          "disobey_task_specification": "the current message deviates from the task specification by stating that no solution can be provided without the actual length of the shark, contradicting the previous agent's execution of code based on a hypothetical length.  ",
+          "disobey_role_specification": "the current message disobeys the role specification by taking on a decision-making stance rather than verifying the proposals, which is not consistent with the responsibilities of agent verifier. ",
+          "incorrect_verification": "the current message fails to acknowledge or validate the previous solutions proposed by both agents regarding the hypothetical length of the shark, indicating a lack of adequate verification related to the assumptions made, which could lead to inaccuracies. ",
+          "step_repetition": "the current message reiterates the necessity of knowing the shark's actual length, which has already been discussed, emphasizing a step that has been previously established without progressing the conversation.  ",
+          "no_or_incomplete_verification": "the current message indicates that a proper verification of both agents' proposed solutions has not been performed because the solutions rely on an assumed value rather than verifying with the necessary actual data. ",
+          "premature_termination": "the current message suggests a conclusion of no solution without obtaining all necessary information, indicating a premature termination of the discussion and tasks at hand. "
         }
       }
     },
@@ -235,18 +249,20 @@
       "turn2": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": false,
-          "Blurring roles": true
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": false,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the current message does not adhere to the task specification of answering a specific question about the percentage of remoras attached to a shark, instead providing introductions of various agents. ",
-          "Proceed with incorrect assumptions": "the 'current message to evaluate' does not indicate any validation or cross-checking of information related to the previous assistant's inquiry about the shark and remoras, thus it does not demonstrate inadequate or wrong verification. ",
-          "Redundant conversation turns": "the 'current message to evaluate' does not exhibit unnecessary reiteration of previously completed steps or questions related to the context provided. ",
-          "No attempt to verify outcome": "the 'current message to evaluate' does not show any verification process or assessment of outcomes related to the previous context, which indicates a lack of verification.  ",
-          "Blurring roles": "the 'current message to evaluate' introduces team members without completing the interaction or addressing the question posed by the assistant, which indicates a premature termination of the dialogue.  "
+          "disobey_task_specification": "the current message effectively introduces participants and outlines their roles, which aligns with the task of organizing the workflow and does not indicate a failure to adhere to specified constraints. ",
+          "disobey_role_specification": "the current message correctly introduces the participants and clarifies their roles without attempting to solve any problems directly, aligning with the specifications of the chat manager role. ",
+          "incorrect_verification": "the current message does not exhibit characteristics of incorrect verification as it describes the roles of the participants without making any claims that require validation or verification. ",
+          "step_repetition": "the 'current message to evaluate' does not exhibit unnecessary reiteration of previously completed steps, but rather introduces the roles of each participant, which is a new action, not a repetition of a previous step. ",
+          "no_or_incomplete_verification": "the current message does not exhibit signs of insufficient verification since it clearly outlines the roles of agents and specifies when to call on the agent verifier for confirmation, ensuring verification will be conducted properly.  ",
+          "premature_termination": "the 'current message to evaluate' successfully introduces the participants and their roles without prematurely ending the conversation or task, as it invites further collaboration.  "
         }
       },
       "turn3": {

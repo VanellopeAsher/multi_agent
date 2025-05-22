@@ -52,35 +52,39 @@
       "turn3": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": true,
-          "No attempt to verify outcome": true,
-          "Blurring roles": true
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": true,
+          "no_or_incomplete_verification": false,
+          "premature_termination": true
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the current message correctly follows the task specification of calculating protein intake but incorrectly suggests the next speaker should be agent code executor, which strays from the defined assistant's role based on the context. ",
-          "Proceed with incorrect assumptions": "the current message outlines steps for calculating protein intake but does not attempt to validate or cross-check any specific crucial information or decisions; it simply presents a method without indicating any verification process. ",
-          "Redundant conversation turns": "the current message repeats the step of calculating protein in 300 grams of mushrooms twice, which aligns with the defined error dimension of step repetition.  ",
-          "No attempt to verify outcome": "the 'current message to evaluate' suggests a method to calculate protein intake without verifying or checking the correctness of the earlier stated information, which aligns with the definition of the 'no_or_incomplete_verification' error dimension.  ",
-          "Blurring roles": "the 'current message to evaluate' suggests steps for calculating protein intake but does not complete the calculations or provide a final answer, indicating that the interaction is premature and incomplete. "
+          "disobey_task_specification": "the current message correctly outlines steps to solve the user's problem about protein intake from mushrooms, adhering to the task specification without deviation.  ",
+          "disobey_role_specification": "the current message presents a solution to a problem rather than executing python code, which falls outside the specified role of the agent code executor as stated in the instructions.  ",
+          "incorrect_verification": "the current message provides a clear response to the user's query without verifying the accuracy of the initial conditions presented by the previous assistant, which indicates a lack of adequate validation. ",
+          "step_repetition": "the current message explicitly repeats the steps of calculating protein both in the introduction and in the detailed breakdown of calculations, thereby exhibiting unnecessary reiteration of the same steps.  ",
+          "no_or_incomplete_verification": "the message provides a calculation method without verifying or confirming if the outcomes align with the original query, displaying incomplete verification of the task's expectations.  ",
+          "premature_termination": "the message provides steps for solving the protein calculation but suggests the next speaker instead of completing the answer, indicating that the interaction is cut short. "
         }
       },
       "turn4": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": true,
-          "Blurring roles": false
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": true,
+          "no_or_incomplete_verification": true,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the 'current message to evaluate' correctly addresses the task of calculating john's protein intake, adhering to the requirement presented in the context, so it does not exhibit disobedience to task specifications.  ",
-          "Proceed with incorrect assumptions": "the 'current message to evaluate' does not demonstrate incorrect verification, as it presents a clear calculation without attempting to validate any prior information or conclusions inadequately or wrongly. ",
-          "Redundant conversation turns": "the current message does not explicitly and unmistakably reiterate previously completed steps in a way that would cause frustration or delays, as it presents the calculations in a clear and concise manner without unnecessary repetition. ",
-          "No attempt to verify outcome": "the current message contains python code for calculating weekly protein intake but lacks any verification of the results or any mention of checks to ensure the calculations are correct, aligning it with the definition of no_or_incomplete_verification.  ",
-          "Blurring roles": "the current message provides a complete calculation and suggests the next speaker without ending the interaction prematurely, thus fulfilling all necessary objectives.  "
+          "disobey_task_specification": "the current message adheres to the task of calculating the weekly protein intake based on the provided specifications, therefore it does not exhibit disobedience to the task specifications.  ",
+          "disobey_role_specification": "the 'current message to evaluate' adheres to the responsibilities of agent code executor by providing python code that solves the problem about protein intake, without taking on the role of another agent. ",
+          "incorrect_verification": "the 'current message to evaluate' involves calculations based on provided protein data and does not showcase any failure to validate or cross-check crucial information within the context, therefore it does not exhibit incorrect verification. ",
+          "step_repetition": "the 'current message to evaluate' reiterates the steps for calculating protein from mushrooms without adding new information or clarity, thus exemplifying unnecessary repetition. ",
+          "no_or_incomplete_verification": "the current message contains a python script that computes the weekly protein intake without evidence of verification or confirmation of the outputs, aligning with the criteria for the error dimension.  ",
+          "premature_termination": "the current message provides a complete python solution to the problem but suggests the next speaker prematurely, which indicates that the task could be incomplete depending on further necessary discussion or validation of the output.  "
         }
       },
       "turn5": {
@@ -106,18 +110,20 @@
       "turn5": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": true,
-          "Blurring roles": true
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": true,
+          "premature_termination": true
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the 'current message to evaluate' indicates successful execution of code but does not specify whether the code output is both correct and complete based on the context, implying a potential failure to fully adhere to the task requirements. ",
-          "Proceed with incorrect assumptions": "the current message does not show any attempt of validation or cross-checking information, as it simply reports the execution result without indicating any verification process. ",
-          "Redundant conversation turns": "the 'current message to evaluate' does not reiterate any steps previously completed in the context, so it does not demonstrate 'step_repetition'. ",
-          "No attempt to verify outcome": "the current message presents the output of the executed code without any reference to verification of the accuracy of that output or the process leading to it, which aligns with the definition of no_or_incomplete_verification. ",
-          "Blurring roles": "the current message provides a code execution result but lacks any further elaboration, context, or next steps necessary to reach a complete conclusion, indicating premature termination of the interaction.  "
+          "disobey_task_specification": "the current message does not demonstrate failure to adhere to the task specifications, as it correctly presents the output of the previous python code execution for the specified problem. ",
+          "disobey_role_specification": "the current speaker outputs code execution results instead of focusing on collaborative problem-solving as specified by their role as an agent problem solver.  ",
+          "incorrect_verification": "the current message indicates the successful execution of code but does not explicitly show any verification or validation of the calculated result within the context of the conversation, which contributes to potential inaccuracies. ",
+          "step_repetition": "the current message does not exhibit repetition of previously completed steps but rather provides the output of computational steps already defined in earlier messages. ",
+          "no_or_incomplete_verification": "the message provides the execution result without any verification of the code's correctness or the protein calculation's implications, indicating a lack of confirmation of the outcome. ",
+          "premature_termination": "the current message indicates the completion of a task (code execution success) without providing further interaction or inviting additional questions, thus ending the dialogue prematurely before all objectives have been fully addressed. "
         }
       },
       "turn6": {
@@ -128,18 +134,20 @@
       "turn1": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": false,
-          "Blurring roles": false
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": true,
+          "premature_termination": true
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the 'current message to evaluate' does not adhere to any specific task specification since there is no provided context or constraints from previous conversation turns to consider, making it impossible to evaluate disobedience to such specifications.  ",
-          "Proceed with incorrect assumptions": "the current message does not involve any validation or cross-checking of information, thus it does not exhibit the characteristics of incorrect verification. ",
-          "Redundant conversation turns": "the current message does not contain any unnecessary reiteration of previously completed steps or questions, as there is no prior context provided for reference.  ",
-          "No attempt to verify outcome": "the current message does not involve any verification process or check of task outcomes, as it solely presents a hypothetical calculation without assessing the accuracy of the information. ",
-          "Blurring roles": "the current message presents a mathematical question but does not indicate any completion of a prior conversation or context, suggesting an abrupt introduction of a question without necessary earlier exchanges. "
+          "disobey_task_specification": "the current message does not relate to any prior task specifications, meaning it does not demonstrate a failure to disobey a specified task. ",
+          "disobey_role_specification": "the current message does not conform to the role of agent verifier, as it presents a calculation rather than waiting to verify the solutions submitted by other agents. ",
+          "incorrect_verification": "the message does not demonstrate any verification process or validation of information, as it merely presents a question about a math problem without referencing any prior decisions or information to validate. ",
+          "step_repetition": "the current message to evaluate does not show any unnecessary repetition of previously completed steps since there is no previous context provided to compare against. ",
+          "no_or_incomplete_verification": "the current message presents a calculation step without any confirmation or checking of the task outcomes, which may lead to errors in the final result.  ",
+          "premature_termination": "the current message poses a question related to a calculation without concluding the previous discussion or context, indicating a lack of necessary information exchange to reach a complete outcome.  "
         }
       },
       "turn2": {
@@ -157,18 +165,20 @@
       "turn6": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": true,
-          "No attempt to verify outcome": false,
-          "Blurring roles": false
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": true,
+          "no_or_incomplete_verification": true,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the 'current message to evaluate' correctly follows the task of calculating the protein intake from mushrooms per week as requested, and adheres to the earlier parts of the conversation. ",
-          "Proceed with incorrect assumptions": "the current message correctly validates the calculations based on the given context and does not exhibit inadequate or wrong validation of crucial information. ",
-          "Redundant conversation turns": "the 'current message to evaluate' repeats the calculations already provided in the previous context, indicating unnecessary reiteration of steps. ",
-          "No attempt to verify outcome": "the current message presents a detailed calculation without verifying the output of the previous code execution for consistency, indicating a lack of verification of the results.  ",
-          "Blurring roles": "the 'current message to evaluate' provides a complete solution to the protein calculation without cutting off any information or leaving questions unanswered, indicating that no premature termination has occurred.  "
+          "disobey_task_specification": "the current message follows the task specification by calculating the protein content correctly based on the instructions provided in the previous turns without introducing any incorrect or extraneous information.  ",
+          "disobey_role_specification": "the current speaker, who is supposed to be agent verifier, is erroneously calculating the protein intake instead of verifying the prior outputs from the other agents. ",
+          "incorrect_verification": "the 'current message to evaluate' demonstrates correct validation of the protein calculation based on previous inputs without any indication of failure to verify or cross-check critical information. ",
+          "step_repetition": "the current message reiterates calculations and steps already provided by the previous agents, thereby causing unnecessary repetition in the process. ",
+          "no_or_incomplete_verification": "the 'current message to evaluate' presents a solution but does not verify or confirm whether the calculations or logic previously provided by the agent_code_executor and agent_problem_solver are correct, which aligns with the explanation of the error dimension of incomplete verification. ",
+          "premature_termination": "the 'current message to evaluate' completes the calculations for the protein intake, fulfilling the task without any indication of leaving any necessary information unaddressed or objectives unmet, meaning it does not exhibit premature termination.  "
         }
       }
     },
@@ -179,18 +189,20 @@
       "turn2": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": false,
-          "Blurring roles": false
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": false,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the 'current message to evaluate' does not address the specific task or constraints presented in the conversational context, which was a problem-solving query regarding protein intake; instead, it provides an introduction to various agents. ",
-          "Proceed with incorrect assumptions": "the 'current message to evaluate' does not exhibit any validation or cross-checking of crucial information or decisions, thus failing to meet the criteria for 'incorrect_verification'. ",
-          "Redundant conversation turns": "the 'current message to evaluate' introduces team members and their roles without repeating any previously mentioned steps or questions from the 'conversational context', hence it does not exhibit step repetition. ",
-          "No attempt to verify outcome": "the 'current message to evaluate' outlines roles without specifying any verification of solutions, which indicates a lack of complete verification as defined. ",
-          "Blurring roles": "the 'current message to evaluate' does not prematurely terminate the conversation; instead, it introduces team members and outlines their roles without suggesting an end to the interaction.  "
+          "disobey_task_specification": "the current message adheres to the task of introducing participants and assigning responsibilities without straying from the specified format of the conversation.  ",
+          "disobey_role_specification": "the current speaker's message clearly outlines the roles and responsibilities of each agent without stepping outside of their designated function as chat manager, thus adhering to their role specification. ",
+          "incorrect_verification": "the current message does not exhibit any failure to validate or cross-check information, but rather accurately outlines the roles of the agents without indicating any verification issues.  ",
+          "step_repetition": "the 'current message to evaluate' clearly introduces the roles of several agents without reiterating any previously completed steps, as it is an introduction rather than a repetition of task processes. ",
+          "no_or_incomplete_verification": "the current message outlines the roles of agents but does not include a verification step for the tasks, which suggests that task outcomes may not be properly checked or confirmed.  ",
+          "premature_termination": "the current message serves as an introduction to the team and does not end the dialogue or task prematurely, as it sets the stage for further interaction and goal completion. "
         }
       },
       "turn3": {

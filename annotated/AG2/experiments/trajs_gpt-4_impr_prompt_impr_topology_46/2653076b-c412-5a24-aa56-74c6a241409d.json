@@ -1,0 +1,420 @@
+{
+  "instance_id": "2653076b-c412-5a24-aa56-74c6a241409d",
+  "problem": "Marcus ordered 5 croissants at $3.50 apiece, 4 cinnamon rolls at $2.50 each, 3 mini quiches for $4.50 apiece and 13 blueberry muffins that were $1.50 apiece.  At check out, Marcus shows his loyalty card that gives him 10% off of his purchase.  What is Marcus' total bill?",
+  "roles": {
+    "agent1": "Agent_Code_Executor",
+    "agent2": "Agent_Problem_Solver",
+    "agent3": "Agent_Verifier",
+    "agent4": "chat_manager"
+  },
+  "history": [
+    {
+      "role": "assistant",
+      "name": "Agent_Verifier",
+      "content": "Marcus ordered 5 croissants at $3.50 apiece, 4 cinnamon rolls at $2.50 each, 3 mini quiches for $4.50 apiece and 13 blueberry muffins that were $1.50 apiece.  At check out, Marcus shows his loyalty card that gives him 10% off of his purchase.  What is Marcus' total bill?"
+    },
+    {
+      "role": "user",
+      "name": "chat_manager",
+      "content": "Hello everyone. We have assembled a great team today to answer questions and solve tasks. In attendance are:\n\nAgent_Code_Executor:  \n                I am Agent Code Executor, specializing in solving problems by writing Python code. \n                I have the ability to execute Python code, so feel free to reach out whenever you need assistance with Python programming.\nAgent_Problem_Solver: \n                I am Agent Problem Solver, and I work collaboratively with other agents to tackle various challenges.\nAgent_Verifier:   \n                I am Agent Verifier. Please call on me when both Agent Code Executor and Agent Problem Solver have submitted their solutions, so I can verify their proposals and provide a final synthesis."
+    },
+    {
+      "role": "user",
+      "name": "Agent_Code_Executor",
+      "content": "To calculate Marcus' total bill, we first need to compute the total cost of all the items he bought. After we get the total cost, we need to reduce it by 10% (the discount from his loyalty card) to get the final bill.\n\nHere are the steps to follow:\n1. Calculate the total cost of each item by multiplying the price per item with the quantity.\n2. Summarize the total cost of all items to get the total cost.\n3. Reduce the total cost by 10% to get the final bill. \n\nLet's start by calculating the total cost for each item."
+    },
+    {
+      "role": "user",
+      "name": "Agent_Code_Executor",
+      "content": "```python\n# define the quantity and price for each item\nqty_croissants = 5\nprice_croissants = 3.5\nqty_cinnamon_rolls = 4\nprice_cinnamon_rolls = 2.5\nqty_mini_quiches = 3\nprice_mini_quiches = 4.5\nqty_blueberry_muffins = 13\nprice_blueberry_muffins = 1.5\n\n# calculate the total cost for each item type\ntotal_croissants = qty_croissants * price_croissants\ntotal_cinnamon_rolls = qty_cinnamon_rolls * price_cinnamon_rolls\ntotal_mini_quiches = qty_mini_quiches * price_mini_quiches\ntotal_blueberry_muffins = qty_blueberry_muffins * price_blueberry_muffins\n\n# sum up the total cost for all items\ntotal_cost = total_croissants + total_cinnamon_rolls + total_mini_quiches + total_blueberry_muffins\n\n# print the total cost before loyalty discount\nprint(total_cost)\n```"
+    },
+    {
+      "role": "user",
+      "name": "Agent_Problem_Solver",
+      "content": "exitcode: 0 (execution succeeded)\nCode output: 60.5\n"
+    },
+    {
+      "role": "user",
+      "name": "Agent_Code_Executor",
+      "content": "The total cost of all items without the discount is $60.5. Now, let's apply the 10% discount to get Marcus' total bill. \n\nWe can calculate this by subtracting 10% of the total cost from the total cost itself."
+    },
+    {
+      "role": "user",
+      "name": "Agent_Code_Executor",
+      "content": "```python\n# define the loyalty discount rate\ndiscount_rate = 0.10\n\n# calculate the discount amount\ndiscount = total_cost * discount_rate\n\n# calculate the final bill after discount\ntotal_bill = total_cost - discount\n\n# print the final bill\nprint(round(total_bill, 2))  # round to 2 decimal places as we are dealing with money\n```"
+    },
+    {
+      "role": "user",
+      "name": "Agent_Problem_Solver",
+      "content": "exitcode: 1 (execution failed)\nCode output: Traceback (most recent call last):\n  File \"/Users/ngshya/projects/MultiAgentFailureTaxonomyAnnotations/AG2/experiments/.tmp_code_executor/define the loyalty discount rate\", line 5, in <module>\n    discount = total_cost * discount_rate\n               ^^^^^^^^^^\nNameError: name 'total_cost' is not defined\n"
+    },
+    {
+      "role": "assistant",
+      "name": "Agent_Verifier",
+      "content": "It seems there was a failure in code execution. The code executed by Agent_Code_Executor in the previous step made the calculations in isolation, so the total_cost variable was not available to be used in the following step. This points to the need for an integrated piece of code that executes all the necessary calculations in unison. Can you generate that, Agent_Code_Executor?"
+    },
+    {
+      "role": "user",
+      "name": "Agent_Code_Executor",
+      "content": "```python\n# define the quantity and price for each item\nqty_croissants = 5\nprice_croissants = 3.5\nqty_cinnamon_rolls = 4\nprice_cinnamon_rolls = 2.5\nqty_mini_quiches = 3\nprice_mini_quiches = 4.5\nqty_blueberry_muffins = 13\nprice_blueberry_muffins = 1.5\n\n# calculate the total cost for each item type\ntotal_croissants = qty_croissants * price_croissants\ntotal_cinnamon_rolls = qty_cinnamon_rolls * price_cinnamon_rolls\ntotal_mini_quiches = qty_mini_quiches * price_mini_quiches\ntotal_blueberry_muffins = qty_blueberry_muffins * price_blueberry_muffins\n\n# sum up the total cost for all items\ntotal_cost = total_croissants + total_cinnamon_rolls + total_mini_quiches + total_blueberry_muffins\n\n# define the loyalty discount rate\ndiscount_rate = 0.10\n\n# calculate the discount amount\ndiscount = total_cost * discount_rate\n\n# calculate the final bill after discount\ntotal_bill = total_cost - discount\n\n# print the final bill\nprint(round(total_bill, 2))  # round to 2 decimal places as we are dealing with money\n```"
+    },
+    {
+      "role": "user",
+      "name": "Agent_Problem_Solver",
+      "content": "exitcode: 0 (execution succeeded)\nCode output: 54.45\n"
+    },
+    {
+      "role": "assistant",
+      "name": "Agent_Verifier",
+      "content": "The total bill for Marcus, after the 10% discount, is $54.45. This output was the result of executing the program correctly to find the total cost of items, then applying the given discount. The python code did not assume any values and used the given details in the problem statement to arrive at the output. Therefore, the final solution is $54.45.\n\n**SOLUTION_FOUND \\boxed{54.45}**."
+    }
+  ],
+  "label": "54.45",
+  "correct": true,
+  "annotation": {
+    "Agent_Code_Executor": {
+      "turn1": {
+        "target": false
+      },
+      "turn2": {
+        "target": false
+      },
+      "turn3": {
+        "target": true,
+        "pattern": {
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": false,
+          "premature_termination": false
+        },
+        "reasonings": {
+          "disobey_task_specification": "the current message fails to provide the final total bill as requested in the conversational context and instead outlines the calculation process without fulfilling the task specification of stating the total.  ",
+          "disobey_role_specification": "the current message to evaluate explicitly provides instructions for calculating a total bill, which falls outside the responsibility of the agent code executor, who is expected to write and execute python code rather than explain the calculation steps. ",
+          "incorrect_verification": "the 'current message to evaluate' outlines the steps to calculate a total bill based on provided information but does not involve any validation or cross-checking of previously stated details or figures, indicating it does not exhibit characteristics of 'incorrect_verification'.  ",
+          "step_repetition": "the current message outlines a series of steps to calculate marcus' total bill without referencing the previous steps done by another agent, making it unnecessary to call out any already completed tasks. ",
+          "no_or_incomplete_verification": "the current message lays out a plan to calculate marcus' bill but does not confirm or check previous computations or clarify the steps that need verification, indicating a lack of complete verification. ",
+          "premature_termination": "the current message outlines a clear plan to calculate marcus' total bill, indicating that the dialogue will continue and objectives will be met, thus it does not exhibit premature termination. "
+        }
+      },
+      "turn4": {
+        "target": true,
+        "pattern": {
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": false,
+          "premature_termination": true
+        },
+        "reasonings": {
+          "disobey_task_specification": "the current message does not include the 10% discount calculation that was specified in the earlier steps to obtain the final total bill, thus failing to adhere to the task requirements.  ",
+          "disobey_role_specification": "the 'current message to evaluate' by agent code executor properly aligns with their role of solving problems by writing python code, and does not exhibit behavior inconsistent with that role. ",
+          "incorrect_verification": "the current message does not visibly demonstrate any failure to validate or cross-check crucial information as it strictly follows the calculation steps required for the problem without showing indications of error in verification. ",
+          "step_repetition": "the 'current message to evaluate' does not reiterate any previously completed steps and presents a unique distinct step for calculating total costs, so there is no unnecessary repetition. ",
+          "no_or_incomplete_verification": "the current message outlines a set of calculations to obtain marcus' total bill but does not include any verification steps or checks for accuracy after performing these calculations.  ",
+          "premature_termination": "the current message presents a partial solution by calculating the total cost of the items without completing the task of applying the loyalty discount or providing the final bill, which signifies premature termination of the intended computation.  "
+        }
+      },
+      "turn5": {
+        "target": false
+      },
+      "turn6": {
+        "target": true,
+        "pattern": {
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": true,
+          "no_or_incomplete_verification": true,
+          "premature_termination": false
+        },
+        "reasonings": {
+          "disobey_task_specification": "the current message correctly follows the task specification by stating the total cost and describing the next step of applying the discount, thus there is no error in this respect. ",
+          "disobey_role_specification": "the current message respects the role of an agent specializing in executing python code and is consistent with the context provided, therefore it does not exhibit disobedience to role specifications. ",
+          "incorrect_verification": "the current message does not demonstrate inadequate validation or cross-checking of crucial information as it correctly explains how to apply the discount based on the calculated total cost. ",
+          "step_repetition": "the current message reiterates the step of applying a discount that has already been established in previous messages, explicitly restating the need to calculate the discount, which is unnecessary repetition. ",
+          "no_or_incomplete_verification": "the current message does not confirm the accuracy of the computed total cost before proceeding with the discount calculation, which indicates incomplete verification. ",
+          "premature_termination": "the current message does not prematurely terminate the dialogue or task, as it continues the calculation process needed to complete marcus' total bill by discussing the application of a discount. "
+        }
+      },
+      "turn7": {
+        "target": true,
+        "pattern": {
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": true,
+          "no_or_incomplete_verification": true,
+          "premature_termination": false
+        },
+        "reasonings": {
+          "disobey_task_specification": "the current message adheres to the task specifications by correctly implementing the discount calculation process as outlined in the conversational context. ",
+          "disobey_role_specification": "the current message adheres to the responsibilities of the role of agent code executor by providing python code to calculate the total bill, which aligns with the defined role without deviating into another role's responsibilities. ",
+          "incorrect_verification": "the current message does not demonstrate incorrect verification as there is no indication of failure to validate or cross-check crucial information rather it builds correctly on the previous context provided.  ",
+          "step_repetition": "the current message reiterates the process of calculating the discount and final bill without introducing any new steps or information, reflecting an unnecessary repetition of actions already implied in the prior messages.  ",
+          "no_or_incomplete_verification": "the current message does not verify or confirm the outputs of previous calculations, which could allow errors in the discount calculation to propagate undetected.  ",
+          "premature_termination": "the current message provides a complete code to calculate the final bill after applying a discount, which does not constitute an abrupt end to the dialogue or activity, as it continues the previous conversation regarding calculating a total. "
+        }
+      },
+      "turn8": {
+        "target": false
+      },
+      "turn9": {
+        "target": false
+      },
+      "turn10": {
+        "target": true,
+        "pattern": {
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": true,
+          "no_or_incomplete_verification": true,
+          "premature_termination": false
+        },
+        "reasonings": {
+          "disobey_task_specification": "the 'current message to evaluate' contains code that correctly defines the required variables and computes the total cost, which aligns with the outlined task, thus does not exhibit disobedience to task specifications.  ",
+          "disobey_role_specification": "the current message does not demonstrate disobedience to role specifications, as it remains within the context of coding assistance and problem-solving as per its assigned role. ",
+          "incorrect_verification": "the current message does not exhibit incorrect verification as it correctly integrates the necessary variables and calculations without any stated failure to validate crucial information. ",
+          "step_repetition": "the current message reiterates the entire calculation process, which was previously attempted, without addressing the earlier failure, indicating unnecessary repetition.  ",
+          "no_or_incomplete_verification": "the current message introduces code to calculate total costs and apply discounts without confirming that all necessary variables (like total_cost) were properly defined, thereby allowing potential errors to go unchecked. ",
+          "premature_termination": "the current message provides a complete code segment necessary for calculating the total cost and applying a discount, thereby not terminating the dialogue prematurely or leaving information unexchanged. "
+        }
+      },
+      "turn11": {
+        "target": false
+      },
+      "turn12": {
+        "target": false
+      }
+    },
+    "Agent_Problem_Solver": {
+      "turn1": {
+        "target": false
+      },
+      "turn2": {
+        "target": false
+      },
+      "turn3": {
+        "target": false
+      },
+      "turn4": {
+        "target": false
+      },
+      "turn5": {
+        "target": true,
+        "pattern": {
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": true,
+          "premature_termination": true
+        },
+        "reasonings": {
+          "disobey_task_specification": "the current message simply reports the outcome of an executed code without deviating from the task specifications provided in the previous messages.  ",
+          "disobey_role_specification": "the current message does not exhibit characteristics of disobeying role specifications, as it simply provides the output of code execution without violating the defined role of agent problem solver.  ",
+          "incorrect_verification": "the current message does not show any failure to validate or cross-check information, as it simply reports the successful execution of the code without indicating any inadequacies in verification.  ",
+          "step_repetition": "the current message does not reiterate previously completed steps but instead presents the output of the task, so there is no unnecessary repetition.  ",
+          "no_or_incomplete_verification": "the current message provides a code output result without any verification or confirmation of its accuracy, which aligns with the definition of the no_or_incomplete_verification error dimension.  ",
+          "premature_termination": "the message indicates a successful code execution, yet it does not continue to provide the subsequent steps or conclusions needed to fulfill the task of calculating marcus' total bill, thus terminating the dialogue prematurely. "
+        }
+      },
+      "turn6": {
+        "target": false
+      },
+      "turn7": {
+        "target": false
+      },
+      "turn8": {
+        "target": true,
+        "pattern": {
+          "disobey_task_specification": true,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": true,
+          "premature_termination": true
+        },
+        "reasonings": {
+          "disobey_task_specification": "the current message fails to define the `total_cost` variable, which is necessary to correctly perform the calculation as previously specified in the conversational context, indicating a disobedience to task specifications.  ",
+          "disobey_role_specification": "the current message contains an error report related to code execution, which is within the role specification of the agent code executor, and does not indicate any failure to adhere to the defined responsibilities of the agent problem solver. ",
+          "incorrect_verification": "the current message indicates a failure in executing code due to a variable not being defined, which suggests a lack of proper verification of the code context and definitions leading up to that point. ",
+          "step_repetition": "the current message does not explicitly reiterate previously completed steps as it reports an error related to an undefined variable without repeating prior calculations or steps. ",
+          "no_or_incomplete_verification": "the current message indicates an execution failure due to an undefined variable 'total_cost', showing a lack of verification of variable definitions that could lead to further errors in the computation process.  ",
+          "premature_termination": "the message indicates an execution failure without resolving the issue or providing a way forward, suggesting a premature termination of the task.  "
+        }
+      },
+      "turn9": {
+        "target": false
+      },
+      "turn10": {
+        "target": false
+      },
+      "turn11": {
+        "target": true,
+        "pattern": {
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": true,
+          "premature_termination": false
+        },
+        "reasonings": {
+          "disobey_task_specification": "the current message indicates a successful execution and provides a code output, but does not show adherence to the task's requirement of producing an integrated code solution, thus violating the specifications of the collaborative task.  ",
+          "disobey_role_specification": "the current message from 'agent_code_executor' adheres to its role by providing the output of its code execution, which is a responsibility of that role, and does not exhibit any behavior characteristic of another agent. ",
+          "incorrect_verification": "the current message confirms the execution succeeded but does not verify if the calculated total bill accurately reflects the input quantities and prices, which raises a concern for potential incorrect verification. ",
+          "step_repetition": "the current message simply reports the successful execution of the code and provides the result without repeating any previous steps, hence it does not exhibit step repetition.  ",
+          "no_or_incomplete_verification": "the current message indicates successful execution but does not provide verification of the results or confirm the correctness of the output, allowing potential discrepancies to go unchecked.  ",
+          "premature_termination": "the 'current message to evaluate' concludes the interaction with a successful execution and output without addressing any further steps or clarifications needed, indicating that it may not fulfill the objectives set in the preceding dialogue. "
+        }
+      },
+      "turn12": {
+        "target": false
+      }
+    },
+    "Agent_Verifier": {
+      "turn1": {
+        "target": true,
+        "pattern": {
+          "disobey_task_specification": false,
+          "disobey_role_specification": true,
+          "incorrect_verification": true,
+          "step_repetition": false,
+          "no_or_incomplete_verification": false,
+          "premature_termination": false
+        },
+        "reasonings": {
+          "disobey_task_specification": "the message does not exhibit any deviation from specified task requirements as the calculation of marcus' total bill is relevant and appropriately framed within the context of a potential problem to solve. ",
+          "disobey_role_specification": "the current message exhibits characteristics of disobeying role specification, as the speaker is acting as a verifier yet is providing a detailed calculation question instead of waiting for solutions from other agents. ",
+          "incorrect_verification": "the message presents a scenario without any prior validation or context indicating a verification step regarding the calculations or provided information, which aligns with the definition of incorrect verification. ",
+          "step_repetition": "the 'current message to evaluate' does not show any unnecessary reiteration of previously completed steps, as it presents a new calculation request without repeating past actions. ",
+          "no_or_incomplete_verification": "the current message does not include any verification or confirmation of the calculated total bill, which is necessary to ensure accuracy and check for potential calculation errors based on the order details provided.",
+          "premature_termination": "the current message provides all necessary calculations and asks for the total bill without prematurely ending the interaction, suggesting the objectives have not been met. "
+        }
+      },
+      "turn2": {
+        "target": false
+      },
+      "turn3": {
+        "target": false
+      },
+      "turn4": {
+        "target": false
+      },
+      "turn5": {
+        "target": false
+      },
+      "turn6": {
+        "target": false
+      },
+      "turn7": {
+        "target": false
+      },
+      "turn8": {
+        "target": false
+      },
+      "turn9": {
+        "target": true,
+        "pattern": {
+          "disobey_task_specification": true,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": true,
+          "premature_termination": true
+        },
+        "reasonings": {
+          "disobey_task_specification": "the current message indicates that the code execution failure was due to the isolation of calculations, which directly relates to not adhering to the task specification of ensuring that necessary variables are defined and available for use.  ",
+          "disobey_role_specification": "the current speaker, agent verifier, is instructing another agent to generate code, which falls outside the validation and synthesis role outlined in the provided context.  ",
+          "incorrect_verification": "the current message acknowledges a failure in code execution due to the unavailability of the total_cost variable but does not verify or cross-check the adequacy of the previous calculations, leading to a lack of system validation.  ",
+          "step_repetition": "the current message highlights the issue of needing an integrated code solution, indicating that previous steps were executed separately, which aligns with the concept of unnecessary reiteration; however, it doesn't explicitly repeat prior actions. ",
+          "no_or_incomplete_verification": "the current message fails to confirm or verify the integration of code by neglecting to check the outputs of the previous execution, which may lead to further errors or inconsistencies in the calculations. ",
+          "premature_termination": "the current message suggests generating new code instead of resolving the issues with the previous attempts, indicating that the conversation is not complete and objectives have not been fully met.  "
+        }
+      },
+      "turn10": {
+        "target": false
+      },
+      "turn11": {
+        "target": false
+      },
+      "turn12": {
+        "target": true,
+        "pattern": {
+          "disobey_task_specification": false,
+          "disobey_role_specification": true,
+          "incorrect_verification": true,
+          "step_repetition": true,
+          "no_or_incomplete_verification": true,
+          "premature_termination": false
+        },
+        "reasonings": {
+          "disobey_task_specification": "the current message fails to adhere to the requirement for an integrated execution of code as explicitly stated in the prior dialogue, which indicates a lack of compliance with task specifications.  ",
+          "disobey_role_specification": "the current message explicitly provides a conclusion and a solution which is the responsibility of the agent verifier, rather than waiting for verification after the solutions have been presented by the other agents, thus it disobeys the role specification.  ",
+          "incorrect_verification": "the current message inaccurately verifies the final output without cross-checking the context or ensuring the calculations were performed correctly, thus failing to validate crucial information adequately.  ",
+          "step_repetition": "the current message reiterates the process of calculating the total bill and applying the discount, which has already been done in the previous steps, indicating step repetition.  ",
+          "no_or_incomplete_verification": "the current message presents the final output without confirming or verifying the correctness of the preceding steps, which could allow errors or inconsistencies to remain unchecked.  ",
+          "premature_termination": "the current message concludes the dialogue with a final solution, but it does not appear to prompt further discussion or verification from the agents, which indicates a potential premature termination of the dialogue before all necessary information is exchanged.  "
+        }
+      }
+    },
+    "chat_manager": {
+      "turn1": {
+        "target": false
+      },
+      "turn2": {
+        "target": true,
+        "pattern": {
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": false,
+          "premature_termination": false
+        },
+        "reasonings": {
+          "disobey_task_specification": "the current message introduces team members and outlines roles, which does not align with the specific task of calculating a total bill as stated in the context, thus disobeying the task specification. ",
+          "disobey_role_specification": "the message outlines the roles of the participants correctly and maintains the chat manager's role without attempting to solve problems, thus adhering to the defined responsibilities. ",
+          "incorrect_verification": "the 'current message to evaluate' does not demonstrate inadequate validation or cross-checking of crucial information, as it simply introduces roles without addressing any verification errors. ",
+          "step_repetition": "the current message does not repeat any previously completed steps in the context of the conversation; it introduces the team members and their roles without reiterating any prior actions. ",
+          "no_or_incomplete_verification": "the current message does not explicitly indicate any omission or inadequacy in the verification process as it clearly outlines the role of the agent verifier in checking and confirming the solutions submitted by others. ",
+          "premature_termination": "the 'current message to evaluate' introduces team members and their roles adequately without ending the interaction prematurely, as it remains relevant to the ongoing task, which is to calculate marcus' total bill.  "
+        }
+      },
+      "turn3": {
+        "target": false
+      },
+      "turn4": {
+        "target": false
+      },
+      "turn5": {
+        "target": false
+      },
+      "turn6": {
+        "target": false
+      },
+      "turn7": {
+        "target": false
+      },
+      "turn8": {
+        "target": false
+      },
+      "turn9": {
+        "target": false
+      },
+      "turn10": {
+        "target": false
+      },
+      "turn11": {
+        "target": false
+      },
+      "turn12": {
+        "target": false
+      }
+    }
+  }
+}

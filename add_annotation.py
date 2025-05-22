@@ -7,6 +7,15 @@ from tqdm import tqdm
 from queue import Queue
 from threading import Lock
 
+DIMENSION_EXPLANATION = {
+    'disobey_task_specification': 'Failure to adhere to the speciﬁed constraints or requirements of a given task, leading to suboptimal or incorrect outcomes.',
+    'disobey_role_specification': 'Failure to adhere to the deﬁned responsibilities and constraints of an assigned role, potentially leading to an agent behaving like another.',
+    'incorrect_verification': 'Failure to adequately validate or cross-check crucial information or decisions during the iterations, potentially leading to errors or vulnerabilities in the system.',
+    'step_repetition': 'Unnecessary reiteration of previously completed steps in a process, potentially causing delays or errors in task completion.',
+    'no_or_incomplete_verification': '(partial) omission of proper checking or conﬁrmation of task outcomes or system outputs, potentially allowing errors or inconsistencies to propagate undetected.',
+    'premature_termination': 'Ending a dialogue, interaction or task before all necessary information has been exchanged or objectives have been met, potentially resulting in incomplete or incorrect outcomes.'
+}
+
 # Load configuration
 def load_config():
     config_path = os.path.join(os.path.dirname(__file__), 'config.yaml')
@@ -21,32 +30,8 @@ os.environ["OPENAI_BASE_URL"] = config['openai']['base_url']
 openai.api_key = os.environ["OPENAI_API_KEY"]
 openai.api_base = os.environ["OPENAI_BASE_URL"]
 
-DIMENSION_EXPLANATIONS = {
-    "disobey_task_specification": (
-        "Failure to adhere to the specific constraints or requirements of a given task, "
-        "leading to suboptimal or incorrect outcomes."# This corresponds to FM-1.1 in the MASFT taxonomy.
-    ),
-    "incorrect_verification": (
-        "Attempted validation or cross-checking of crucial information or decisions was performed, "
-        "but was done inadequately or wrongly, potentially leading to errors or vulnerabilities."# This corresponds to FM-3.3 in the MASFT taxonomy.
-    ),
-    "step_repetition": (
-        "Unnecessary reiteration of previously completed steps or questions in a process, "
-        "potentially causing delays, user frustration, or errors. "#This corresponds to FM-1.3 in the MASFT taxonomy.
-    ),
-    "no_or_incomplete_verification": (
-        "Failure to perform any verification, or only a partial/superficial check of task outcomes "
-        "or system outputs, allowing potential errors or inconsistencies to propagate undetected. "#This corresponds to FM-3.2 in the MASFT taxonomy.
-    ),
-    "premature_termination": (
-        "Ending an interaction or process before all necessary information is exchanged, "
-        "all objectives are met, or a natural conclusion is reached, resulting in incomplete "
-        "or incorrect outcomes."# This corresponds to FM-3.1 in the MASFT taxonomy.
-    ),
-}
-
 # Generic detection via OpenAI
-def detect_dimension_with_openai(content, context, dimension_key, turn_idx, max_retries=3, retry_delay=1):
+def detect_dimension_with_openai(content, context, dimension_key, turn_idx, role_prompt, max_retries=3, retry_delay=1):
     """
     Detects if a specific dimension (failure mode) is present in the content
     given the context, using OpenAI's GPT model.
@@ -67,7 +52,7 @@ def detect_dimension_with_openai(content, context, dimension_key, turn_idx, max_
         print("OpenAI API key is not set. Please set the OPENAI_API_KEY environment variable.")
         return None, "API key not set"
         
-    explanation = DIMENSION_EXPLANATIONS[dimension_key]
+    explanation = DIMENSION_EXPLANATION[dimension_key]
     
     # Keep track of all errors for better error reporting
     errors = []
@@ -79,8 +64,9 @@ def detect_dimension_with_openai(content, context, dimension_key, turn_idx, max_
         f"3. Base your decision *solely and strictly* on whether the message and context align with the provided 'Explanation of Error Dimension'. Do not infer beyond this explanation. Your evaluation should focus only on the specified dimension, ignoring other potential issues unless they directly relate to this dimension.\n"
         f"4. Output 'true' if this specific error dimension applies. Otherwise, output 'false'. No other output is permitted.\n\n"
         
+        f"**Role of the current speaker:**\n{role_prompt}\n\n"
         f"**Conversational Context (last up to 3 turns):**\n{json.dumps(context, indent=2)}\n\n"
-        f"**Current Message to Evaluate:**\n'{content}'\n\n"
+        f"**Message of the current speaker:**\n'{content}'\n\n"
         
         f"**Error Dimension to Check For:** {dimension_key}\n"
         f"**Explanation of Error Dimension ({dimension_key}):**\n{explanation}\n\n"
@@ -92,10 +78,10 @@ def detect_dimension_with_openai(content, context, dimension_key, turn_idx, max_
         try:
             client = openai.OpenAI(
                 api_key=openai.api_key,
-                base=openai.api_base
+                base_url=openai.api_base
             )
             response = client.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4o-mini",
                 messages=[
                 {
                     "role": "system",
@@ -143,17 +129,8 @@ def detect_dimension_with_openai(content, context, dimension_key, turn_idx, max_
     # This line should never be reached due to the return statements and exception above
     return None, "Unexpected error in API call"
 
-# Mapping dimensions to criteria labels (remains the same)
-DIMENSION_TO_CRITERION = {
-    'disobey_task_specification': 'Fail to detect ambiguities/contradictions',
-    'incorrect_verification': 'Proceed with incorrect assumptions',
-    'step_repetition': 'Redundant conversation turns',
-    'no_or_incomplete_verification': 'No attempt to verify outcome',
-    'premature_termination': 'Blurring roles'
-}
 
-
-def analyze_dialogue(data):
+def analyze_dialogue(data, roles_prompt):
     """
     Analyzes the entire dialogue history for all roles.
     
@@ -187,18 +164,19 @@ def analyze_dialogue(data):
             if role == current_role:
                 pattern = {}
                 reasonings = {}
+                role_prompt = roles_prompt[role]
                 
-                for dimension, criterion in DIMENSION_TO_CRITERION.items():
+                for dimension, explanation in DIMENSION_EXPLANATION.items():
                     # Detect if this dimension is present and get reasoning
-                    has_issue, reasoning = detect_dimension_with_openai(turn['content'], context, dimension, turn_idx)
+                    has_issue, reasoning = detect_dimension_with_openai(turn['content'], context, dimension, turn_idx, role_prompt)
                     
                     # Check if we got an error response (has_issue is None)
                     if has_issue is None:
                         print(f"Skipping file due to persistent API failures in turn {turn_idx + 1}")
                         return None  # Signal to skip this file
                     
-                    pattern[criterion] = has_issue
-                    reasonings[criterion] = reasoning
+                    pattern[dimension] = has_issue
+                    reasonings[dimension] = reasoning
                 
                 analysis[role][turn_key]['pattern'] = pattern
                 analysis[role][turn_key]['reasonings'] = reasonings
@@ -207,8 +185,14 @@ def analyze_dialogue(data):
 
 def process_file(args):
     """Process a single file with the given arguments."""
-    file_path, new_file_path, pbar, pbar_lock = args
+    file_path, new_file_path, task_type, pbar, pbar_lock = args
     try:
+        # Skip if the file already exists in the annotated directory
+        if os.path.exists(new_file_path):
+            with pbar_lock:
+                pbar.write(f"Skipping {file_path} - already exists in annotated")
+            return
+
         # Create directory if it doesn't exist
         os.makedirs(os.path.dirname(new_file_path), exist_ok=True)
 
@@ -225,8 +209,11 @@ def process_file(args):
         with pbar_lock:
             pbar.write(f"Processing {file_path}...")
         
+        role_prompt_path = f"roles_prompt/roles_prompt_{task_type}.json"
+        with open(role_prompt_path, 'r', encoding='utf-8') as f:
+            role_prompt = json.load(f)
         # Perform the analysis
-        analysis_result = analyze_dialogue(data)
+        analysis_result = analyze_dialogue(data, role_prompt)
         
         # Check if we should skip this file due to persistent API failures
         if analysis_result is None:
@@ -266,10 +253,12 @@ def main():
         for file in files:
             if file.endswith('.json'):
                 file_path = os.path.join(root, file)
+                
+                task_type = os.path.relpath(file_path, processed_dir).split(os.sep)[0]
                 rel_path = os.path.relpath(root, processed_dir)
                 new_dir = os.path.join(annotated_dir, rel_path)
                 new_file_path = os.path.join(new_dir, file)
-                files_to_process.append((file_path, new_file_path))
+                files_to_process.append((file_path, new_file_path, task_type))
     
     # Create progress bar and lock
     pbar = tqdm(total=len(files_to_process), desc="Processing files")
@@ -278,7 +267,7 @@ def main():
     # Process files with ThreadPoolExecutor
     with concurrent.futures.ThreadPoolExecutor(max_workers=64) as executor:
         # Add progress bar and lock to each file's arguments
-        args = [(fp, nfp, pbar, pbar_lock) for fp, nfp in files_to_process]
+        args = [(fp, nfp, tasktype, pbar, pbar_lock) for fp, nfp, tasktype in files_to_process]
         # Submit all tasks
         executor.map(process_file, args)
     

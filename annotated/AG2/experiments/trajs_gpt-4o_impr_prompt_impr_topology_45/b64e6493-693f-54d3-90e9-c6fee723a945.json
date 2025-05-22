@@ -55,35 +55,39 @@
       "turn4": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": true,
-          "No attempt to verify outcome": false,
-          "Blurring roles": true
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": false,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the current message follows the task specification by verifying a previously proposed solution and executing python code, adhering to the collaborative requirements outlined in the context. ",
-          "Proceed with incorrect assumptions": "the current message to evaluate does not seem to provide any indication of inadequate or incorrect validation since it outlines a logical plan to verify the calculations through python coding without exposing any errors in judgment.  ",
-          "Redundant conversation turns": "the 'current message to evaluate' reiterates the calculation steps that have already been detailed in the 'agent_problem_solver's' message, causing unnecessary repetition.  ",
-          "No attempt to verify outcome": "the message outlines a plan to execute code in python to verify the calculations but does not perform any actual verification of the solution presented by agent problem solver, thus reflecting a potential lack of thorough verification. ",
-          "Blurring roles": "the current message suggests executing the provided code without confirming whether the previous agents agreed on the correctness of the calculations, which may lead to a premature conclusion before all necessary dialogue has occurred.  "
+          "disobey_task_specification": "the current message correctly follows the task specification by acknowledging the proposed solution and executing python code to validate it, without veering off course. ",
+          "disobey_role_specification": "the current message correctly follows the responsibilities of agent code executor by engaging in problem-solving through python code execution, as expected from this role. ",
+          "incorrect_verification": "the current message indicates a proposal to execute code to confirm the solution but does not explicitly validate or cross-check any of the calculations or solution process itself, which is necessary for proper verification. ",
+          "step_repetition": "the current message does not exhibit unnecessary reiteration of previously completed steps, as it summarizes and prepares for execution of the new solution rather than repeating past calculations.  ",
+          "no_or_incomplete_verification": "the current message indicates a plan to execute code for verification but does not confirm the results of any prior calculations or specify the accuracy of the initial problem-solving steps, which signifies a lack of thorough verification.  ",
+          "premature_termination": "the current message suggests executing code to verify the solution rather than concluding the interaction, thereby fulfilling the objective instead of terminating prematurely.  "
         }
       },
       "turn5": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": false,
-          "Blurring roles": true
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": false,
+          "premature_termination": true
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the 'current message to evaluate' adheres to the task specification by providing the correct execution result and does not show any failure to meet requirements.  ",
-          "Proceed with incorrect assumptions": "the current message presents the execution result of the code without indicating any verification or cross-checking of the logic or calculations that led to this output, failing to demonstrate adequate validation as required.  ",
-          "Redundant conversation turns": "the 'current message to evaluate' does not include any unnecessary reiteration of previously completed steps or questions, as it simply reports the execution result without repeating any prior steps. ",
-          "No attempt to verify outcome": "the current message to evaluate reports a successful execution of code and its output, but does not indicate any verification of the accuracy of this output against the context provided. ",
-          "Blurring roles": "the current message indicates the code execution has completed with a result, but does not engage in further discussion or verify the outcome with the other agents, suggesting an abrupt end to the process without ensuring all necessary information is exchanged.  "
+          "disobey_task_specification": "the current message reports the successful execution of the code and presents the correct output, thereby adhering to the task specifications of confirming the solution correctly. ",
+          "disobey_role_specification": "the current message simply reports the result of a code execution without deviating from the role of providing python code solutions, thus remaining within the specified role actions. ",
+          "incorrect_verification": "the current message simply reports the execution success of the code without any explicit validation or cross-checking of previous calculations or results. ",
+          "step_repetition": "the current message reports the execution result of the python code without re-iterating any previous steps, so it does not exhibit step repetition.  ",
+          "no_or_incomplete_verification": "the current message reports the execution result but does not detail any verification process or correctness checks for the output, indicating a lack of thorough validation. ",
+          "premature_termination": "the current message indicates that the execution of the code was successful and provided the output, but it does not further engage in continuing the dialogue or addressing the next steps, potentially leading to an incomplete interaction. "
         }
       },
       "turn6": {
@@ -100,18 +104,20 @@
       "turn3": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": false,
-          "Blurring roles": false
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": true,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the current message adheres to the task specification by providing a step-by-step solution to the problem posed, hence it does not exhibit the error of disobeying task specifications.  ",
-          "Proceed with incorrect assumptions": "the 'current message to evaluate' outlines a solution without any indication of validating or cross-checking the calculations or results, thus not demonstrating inadequate or incorrect verification of information. ",
-          "Redundant conversation turns": "the current message outlines a procedure for solving the problem without unnecessarily repeating any steps that have already been completed, thus it does not exhibit step repetition as defined. ",
-          "No attempt to verify outcome": "the message does not indicate that any verification has been performed or planned on the calculations provided, thereby aligning with the criteria for incomplete verification. ",
-          "Blurring roles": "the 'current message to evaluate' does not end the interaction prematurely; it concludes with a clear answer and a plan to engage with other agents for further verification. "
+          "disobey_task_specification": "the current message adheres to the task specification by providing a detailed solution to the problem posed, thus not exhibiting any disobedience to the task's requirements.  ",
+          "disobey_role_specification": "the current message demonstrates an agent performing calculations and detailing a solution which could be seen as stepping outside the defined role of agent problem solver, as it resembles the role of agent verifier or could overlap with what agent code executor might do. ",
+          "incorrect_verification": "the message does not demonstrate the error dimension of incorrect_verification as it outlines a thorough step-by-step solution without any indication of failing to validate crucial information.  ",
+          "step_repetition": "the current message does not contain unnecessary reiteration of previously completed steps, as each step provided is necessary for the solution to the problem.  ",
+          "no_or_incomplete_verification": "the current message lays out a detailed calculation without indicating any engagement with the other agents for confirmation or verification, which aligns with the definition of not adequately checking or confirming the solution's accuracy. ",
+          "premature_termination": "the 'current message to evaluate' does not exhibit premature termination as it provides a complete solution to the problem before concluding the interaction. "
         }
       },
       "turn4": {
@@ -128,18 +134,20 @@
       "turn1": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": false,
-          "Blurring roles": true
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": true,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the current message presents a mathematical problem but does not adhere to any specified task guidelines or constraints, as there are none provided in the context. ",
-          "Proceed with incorrect assumptions": "the message does not demonstrate any attempted validation or cross-checking of information, hence there is no indication of incorrect verification present. ",
-          "Redundant conversation turns": "the current message does not exhibit unnecessary reiteration, as there is no context suggested to indicate that previous steps have been repeated or reiterated.  ",
-          "No attempt to verify outcome": "the current message presents a mathematical problem without checking or verifying the conditions or quantities presented in the context itself. ",
-          "Blurring roles": "the current message introduces a math problem but lacks any preceding context or resolution, which suggests that it does not fulfill the necessary requirements for a complete interaction and therefore exhibits premature termination. "
+          "disobey_task_specification": "the current message does not demonstrate disobedience to task specifications since there are no specified constraints or requirements outlined in the conversational context. ",
+          "disobey_role_specification": "the message presents a math problem rather than fulfilling the role of verifying solutions as specified for agent verifier. ",
+          "incorrect_verification": "the current message does not involve any validation or verification process of previously submitted information, as there is no preceding context indicating a need for cross-checking crucial information or decisions. ",
+          "step_repetition": "the 'current message to evaluate' does not reflect any unnecessary repetition of steps as there are no previous steps provided in the 'conversational context' to repeat. ",
+          "no_or_incomplete_verification": "the current message presents a problem without verifying or confirming the task outcome or providing a system output that could lead to undetected errors, thereby aligning with the definition of no_or_incomplete_verification. ",
+          "premature_termination": "the current message introduces a problem but does not end the dialogue or task, so it does not exhibit premature termination as defined. "
         }
       },
       "turn2": {
@@ -157,18 +165,20 @@
       "turn6": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": false,
-          "Blurring roles": false
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": false,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the 'current message to evaluate' summarizes and confirms the calculations already done by the previous agents rather than introducing new tasks or specifications, therefore it does not exhibit the characteristics of disobeying task specifications. ",
-          "Proceed with incorrect assumptions": "the message presents a verification process that aligns with the context of previous calculations and execution results, thus does not exhibit inadequate or wrong validation. ",
-          "Redundant conversation turns": "the 'current message to evaluate' contains a detailed reiteration of steps and calculations that were already explained in prior messages, indicating unnecessary repetition. ",
-          "No attempt to verify outcome": "the 'current message to evaluate' provides a detailed verification of the calculations and confirms that the results from both manual and code execution are consistent, demonstrating complete verification of the outcomes. ",
-          "Blurring roles": "the 'current message to evaluate' concludes the dialogue by affirming the solution has been verified through both manual calculations and code execution, hence all necessary information has been exchanged, and the objectives are met. "
+          "disobey_task_specification": "the current message adheres to the task of verifying the solution provided by previous agents and does not demonstrate disobedience to task specifications. ",
+          "disobey_role_specification": "the current message adheres to the role of agent verifier by summarizing and confirming the results of the previous agents without taking on the roles of the problem solver or code executor. ",
+          "incorrect_verification": "the current message does not indicate any failure to validate or cross-check the calculations provided by the previous agents, as it states that both manual calculations and code execution yield consistent results. ",
+          "step_repetition": "the 'current message to evaluate' presents a summary of the previously discussed calculations and code execution steps without unnecessary reiteration of details, hence it does not demonstrate unnecessary repetition.  ",
+          "no_or_incomplete_verification": "the 'current message to evaluate' explicitly verifies the calculations and code execution outcomes without any omission or incompleteness in confirming the results, hence it does not exhibit the characteristics of 'no_or_incomplete_verification'. ",
+          "premature_termination": "the 'current message to evaluate' concludes the discussion after confirming calculations, indicating that all necessary information has been exchanged, thus it does not exhibit premature termination.  "
         }
       }
     },
@@ -179,18 +189,20 @@
       "turn2": {
         "target": true,
         "pattern": {
-          "Fail to detect ambiguities/contradictions": false,
-          "Proceed with incorrect assumptions": false,
-          "Redundant conversation turns": false,
-          "No attempt to verify outcome": false,
-          "Blurring roles": false
+          "disobey_task_specification": false,
+          "disobey_role_specification": false,
+          "incorrect_verification": false,
+          "step_repetition": false,
+          "no_or_incomplete_verification": true,
+          "premature_termination": false
         },
         "reasonings": {
-          "Fail to detect ambiguities/contradictions": "the 'current message to evaluate' does not address the specific task of calculating how many gumballs colby can buy, thus it clearly fails to comply with the task specification. ",
-          "Proceed with incorrect assumptions": "the 'current message to evaluate' does not exhibit any attempt to validate or cross-check crucial information, thus does not align with the 'incorrect_verification' error dimension.  ",
-          "Redundant conversation turns": "the 'current message to evaluate' does not exhibit unnecessary reiteration of previously completed steps, as it introduces team roles rather than repeating past information.  ",
-          "No attempt to verify outcome": "the message does not demonstrate verification of the provided task as it only describes roles without addressing the specific outcome or verifying the previous content. ",
-          "Blurring roles": "the 'current message to evaluate' does not end an interaction prematurely as it serves to introduce the agents and their roles without truncating any necessary information or objectives related to the task.  "
+          "disobey_task_specification": "the 'current message to evaluate' effectively communicates the roles of participants but does not present any task or specification that is disobeyed; rather, it aligns with the goal of organizing the workflow.  ",
+          "disobey_role_specification": "the current message adheres to the specified role of chat manager by introducing participants and describing their responsibilities without performing tasks outside their designated role. ",
+          "incorrect_verification": "the 'current message to evaluate' does not contain any validation or cross-checking actions related to crucial information or decisions; it merely introduces the team members and their roles without indicating any verification process which could lead to an incorrect verification error. ",
+          "step_repetition": "the current message does not contain any unnecessary reiteration of steps from the previous assistant message, as it focuses solely on introducing team members without repeating the problem already presented.  ",
+          "no_or_incomplete_verification": "the 'current message to evaluate' outlines the roles of team members without specifying the necessary confirmation process to ensure accuracy in the solutions, which aligns with the characteristics of incomplete verification as described in the error dimension.  ",
+          "premature_termination": "the current message introduces the participants and sets the stage for collaboration but does not prematurely end the dialogue; it aims to facilitate ongoing interaction and information exchange. "
         }
       },
       "turn3": {
